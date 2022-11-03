@@ -10,6 +10,7 @@
         body {
             padding: 0px;
             margin: 0px;
+            font-family: 'Noto Sans SC', 'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif;
         }
 
         header,
@@ -27,43 +28,57 @@
             font-size: 5em;
             margin-top: 4em;
             margin-bottom: 3em;
-            font-family: monospace;
+            font-family: 'Ubuntu Mono', 'Consolas', monospace;
         }
 
-        main {
+        #sections {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             row-gap: 20px;
             column-gap: 5%;
             padding: 0px 20px;
+            margin: 20px 0px;
         }
 
-        main section {
+        #sections section {
             display: inline-block;
-            border-radius: 5px;
-            box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
             padding: 8px;
         }
 
-        main section label {
+        #sections label {
             display: block;
             margin-bottom: 7px;
             font-weight: bold;
             font-size: large;
         }
 
-        main section a {
+        #sections a {
             color: rgb(44, 140, 172);
             text-decoration: none;
         }
 
-        main section img {
+        #sections img {
             width: 20px;
             margin-right: 5px;
         }
 
+        #photo {
+            margin: 40px auto;
+            max-width: min(500px,80vw);
+        }
+
+        #photo img{
+            width: 100%;
+        }
+
+        #sections section,
+        #photo img {
+            border-radius: 5px;
+            box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+        }
+
         @media screen and (max-width: 900px) {
-            main {
+            #sections {
                 grid-template-columns: 1fr;
             }
         }
@@ -81,9 +96,10 @@
         </div>
     </header>
     <main>
-        需要加载 JavaScript 才能继续。
+        <div id="sections">需要加载 JavaScript 才能继续。</div>
+        <div id="photo"></div>
     </main>
-    <script src="./main.js"></script>
+    <script src="/main.js"></script>
 </body>
 
 </html>

@@ -1,3 +1,4 @@
+/// <reference path="utils.ts" />
 
 interface Link {
     Text: string
@@ -5,8 +6,8 @@ interface Link {
     Icon: string
 }
 
-const divMain = document.getElementsByTagName('main')[0] as HTMLElement
-divMain.innerText = ''
+const divSections = document.getElementById('sections') as HTMLDivElement
+divSections.innerText = ''
 
 function addSection(title: string, links: Link[]): void {
     const section = document.createElement('section')
@@ -20,13 +21,14 @@ function addSection(title: string, links: Link[]): void {
         const span = document.createElement('span')
         span.innerText = link.Text
         const img = document.createElement('img')
-        img.src = `./icons/${link.Icon}.webp`
+        img.src = `/icons/${link.Icon}.webp`
+        img.alt = link.Icon
         ak.appendChild(img)
         ak.appendChild(span)
         section.appendChild(ak)
         section.appendChild(document.createElement('br'))
     }
-    divMain.appendChild(section)
+    divSections.appendChild(section)
 }
 
 addSection('关注我', [
@@ -38,7 +40,8 @@ addSection('关注我', [
 addSection('我的好朋友', [
     { Text: "技术宅的结界", Icon: "0xaa55", URL: "https://www.0xaa55.com/" },
     { Text: "科学家晴猫", Icon: "bbleae", URL: "https://baka.studio/" },
-    { Text: "Sonic853", Icon: "853", URL: "https://blog.853lab.com/" }
+    { Text: "Sonic853", Icon: "853", URL: "https://blog.853lab.com/" },
+    { Text: 'Ayaka （纱雾！）', Icon: 'ayaka', URL: 'https://ayk.moe/' }
 ])
 
 addSection('我的作品', [
@@ -49,7 +52,16 @@ addSection('我的作品', [
 
 addSection('我的配置', [
     { Text: "Kubuntu 22.04", Icon: "kubuntu", URL: "https://github.com/chenbuyi2019/notes/blob/master/Kubuntu%E9%87%8D%E8%A3%85%E7%AC%94%E8%AE%B0.md" },
-    { Text: "AMD Ryzen 5 5600X 6-Core Processor", Icon: "amd", URL: "https://www.amd.com/en/products/cpu/amd-ryzen-5-5600x" },
+    { Text: "AMD Ryzen™ 5 5600X", Icon: "amd", URL: "https://www.amd.com/en/products/cpu/amd-ryzen-5-5600x" },
     { Text: "Asus TUF GAMING B550M-PLUS WIFI II", Icon: "asus", URL: "https://www.asus.com" },
-    { Text: "AMD DIMGREY_CAVEFISH", Icon: "amd", URL: "https://www.amd.com/en/products/graphics/amd-radeon-rx-6600" },
+    { Text: "AMD Radeon™ RX 6600", Icon: "amd", URL: "https://www.amd.com/en/products/graphics/amd-radeon-rx-6600" },
 ])
+
+const divPhoto = document.getElementById('photo') as HTMLDivElement
+const photoIndex = GetRandInt(1, 12).toFixed().padStart(2, '0')
+const imgPhoto = document.createElement('img')
+imgPhoto.src = `/photos/a${photoIndex}.webp`
+imgPhoto.addEventListener('load', function () {
+    divPhoto.appendChild(imgPhoto)
+})
+
