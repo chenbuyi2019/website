@@ -9,11 +9,12 @@ interface Link {
 const divSections = document.getElementById('sections') as HTMLDivElement
 divSections.innerText = ''
 
-function addSection(title: string, links: Link[]): void {
+function addSection(title: string, links: Link[], disOrder: boolean = false): void {
     const section = document.createElement('section')
     const label = document.createElement('label')
     section.appendChild(label)
     label.innerText = title
+    if (disOrder) { DisorderArray(links) }
     for (const link of links) {
         const ak = document.createElement('a')
         ak.href = link.URL
@@ -35,14 +36,15 @@ addSection('关注我', [
     { Text: "Twitter", Icon: "twitter", URL: "https://twitter.com/chenbuyi2019" },
     { Text: "GitHub", Icon: "github", URL: "https://github.com/chenbuyi2019" },
     { Text: "Steam", Icon: "steam", URL: "https://steamcommunity.com/profiles/76561198099466387" }
-])
+], true)
 
 addSection('我的好朋友', [
     { Text: "技术宅的结界", Icon: "0xaa55", URL: "https://www.0xaa55.com/" },
     { Text: "科学家晴猫", Icon: "bbleae", URL: "https://baka.studio/" },
     { Text: "Sonic853", Icon: "853", URL: "https://blog.853lab.com/" },
+    { Text: "AceSheep", Icon: "acesheep", URL: "https://blog.acesheep.com/" },
     { Text: 'Ayaka （纱雾！）', Icon: 'ayaka', URL: 'https://ayk.moe/' }
-])
+], true)
 
 addSection('我的作品', [
     { Text: "这个网站", Icon: "typescript", URL: "https://github.com/chenbuyi2019/website" },
