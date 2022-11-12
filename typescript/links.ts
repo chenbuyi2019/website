@@ -41,10 +41,8 @@ interface Link {
     
     addSection('我的好朋友', [
         { Text: "技术宅的结界", Icon: "0xaa55", URL: "https://www.0xaa55.com/" },
-        { Text: "科学家晴猫", Icon: "bbleae", URL: "https://baka.studio/" },
         { Text: "Sonic853", Icon: "853", URL: "https://blog.853lab.com/" },
-        { Text: "AceSheep", Icon: "acesheep", URL: "https://blog.acesheep.com/" },
-        { Text: 'Ayaka （纱雾！）', Icon: 'ayaka', URL: 'https://ayk.moe/' }
+        { Text: "AceSheep", Icon: "acesheep", URL: "https://blog.acesheep.com/" }
     ], true)
     
     addSection('我的作品', [

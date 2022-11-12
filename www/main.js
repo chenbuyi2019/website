@@ -1,7 +1,4 @@
 "use strict";
-/**
- * 随机取一个整数，范围在 a 和 b 之间，可能等于 a 或者 b
- */
 function GetRandInt(a, b) {
     if (a == b) {
         return a;
@@ -10,9 +7,6 @@ function GetRandInt(a, b) {
     const min = Math.min(a, b);
     return Math.floor(Math.random() * (max + 0.99 - min) + min);
 }
-/**
- * 使数组乱序
- */
 function DisorderArray(array) {
     if (array.length < 1) {
         return;
@@ -25,7 +19,6 @@ function DisorderArray(array) {
     }
     array.push(...t2);
 }
-/// <reference path="utils.ts" />
 (function () {
     const divSections = document.getElementById('sections');
     divSections.innerText = '';
@@ -60,10 +53,8 @@ function DisorderArray(array) {
     ], true);
     addSection('我的好朋友', [
         { Text: "技术宅的结界", Icon: "0xaa55", URL: "https://www.0xaa55.com/" },
-        { Text: "科学家晴猫", Icon: "bbleae", URL: "https://baka.studio/" },
         { Text: "Sonic853", Icon: "853", URL: "https://blog.853lab.com/" },
-        { Text: "AceSheep", Icon: "acesheep", URL: "https://blog.acesheep.com/" },
-        { Text: 'Ayaka （纱雾！）', Icon: 'ayaka', URL: 'https://ayk.moe/' }
+        { Text: "AceSheep", Icon: "acesheep", URL: "https://blog.acesheep.com/" }
     ], true);
     addSection('我的作品', [
         { Text: "这个网站", Icon: "typescript", URL: "https://github.com/chenbuyi2019/website" },
@@ -77,7 +68,6 @@ function DisorderArray(array) {
         { Text: "AMD Radeon™ RX 6600", Icon: "amd", URL: "https://www.amd.com/en/products/graphics/amd-radeon-rx-6600" },
     ]);
 })();
-/// <reference path="utils.ts" />
 (function () {
     const divPhoto = document.getElementById('photo');
     let lastPhotoIndex = GetRandInt(1, 12);
