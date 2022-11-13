@@ -62,10 +62,9 @@ function DisorderArray(array) {
         { Text: "Garry's Mod Addon: Bondage Tool", Icon: "garrysmod", URL: "https://gist.github.com/chenbuyi2019/e97a14b3eec275f56b261b1b5e348670" }
     ]);
     addSection('我的配置', [
-        { Text: "Kubuntu 22.04", Icon: "kubuntu", URL: "https://github.com/chenbuyi2019/notes/blob/master/Kubuntu%E9%87%8D%E8%A3%85%E7%AC%94%E8%AE%B0.md" },
         { Text: "AMD Ryzen™ 5 5600X", Icon: "amd", URL: "https://www.amd.com/en/products/cpu/amd-ryzen-5-5600x" },
-        { Text: "Asus TUF GAMING B550M-PLUS WIFI II", Icon: "asus", URL: "https://www.asus.com" },
-        { Text: "AMD Radeon™ RX 6600", Icon: "amd", URL: "https://www.amd.com/en/products/graphics/amd-radeon-rx-6600" },
+        { Text: "Asus TUF GAMING B550M-PLUS WIFI II", Icon: "asus", URL: "https://www.asus.com.cn/motherboards-components/motherboards/tuf-gaming/tuf-gaming-b550m-plus-wifi-ii/" },
+        { Text: "AMD Radeon™ RX 6600", Icon: "amd", URL: "https://www.amd.com/en/products/graphics/amd-radeon-rx-6600" }
     ]);
 })();
 (function () {

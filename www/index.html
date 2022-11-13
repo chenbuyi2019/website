@@ -57,6 +57,10 @@
             text-decoration: none;
         }
 
+        #sections a:hover {
+            text-decoration: underline;
+        }
+
         #sections img {
             width: 20px;
             margin-right: 5px;
@@ -64,18 +68,18 @@
 
         #photo {
             margin: 40px auto;
-            max-width: min(500px,80vw);
+            max-width: min(500px, 80vw);
         }
 
-        #photo img{
+        #photo img {
             width: 100%;
+            cursor: pointer;
         }
 
         #sections section,
         #photo img {
             border-radius: 5px;
             box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
-            cursor: pointer;
         }
 
         @media screen and (max-width: 900px) {
@@ -89,11 +93,12 @@
 <body>
     <header>
         <div id="bigName">Chen Buyi</div>
-        <div>
+        <div style="line-height: 155%;">
+            姓陈，号布衣<br>
             Femboy.<br>
             A citizen of Kunming.<br>
             愿望：一辈子不做寄生虫<br>
-            喜欢的编程语言: TypeScript, Go, Visual Basic .NET
+            喜欢的编程语言: TypeScript, Go
         </div>
     </header>
     <main>
