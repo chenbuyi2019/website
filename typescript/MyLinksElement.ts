@@ -31,7 +31,7 @@ class BuyiLinksElement extends BuyiBoxElement {
         this.root.appendChild(style)
     }
 
-    private links: BuyiLink[] = []
+    private readonly links: BuyiLink[] = []
     /**
      * 添加一条链接，注意，链接只能增加不能减少
      */

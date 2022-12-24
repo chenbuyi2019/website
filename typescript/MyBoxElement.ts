@@ -16,13 +16,16 @@ class BuyiBoxElement extends HTMLElement {
         this.titleElement.style.marginBottom = '7px'
         this.titleElement.style.fontWeight = 'bold'
         this.titleElement.style.fontSize = 'large'
+        this.titleElement.style.userSelect = 'none'
         this.contentElement = document.createElement('div')
         this.root.appendChild(this.contentElement)
     }
 
-    protected root: ShadowRoot
-    protected titleElement: HTMLLabelElement
-    protected contentElement: HTMLDivElement
+    protected readonly root: ShadowRoot
+    protected readonly titleElement: HTMLLabelElement
+    protected readonly contentElement: HTMLDivElement
+
+    public RefreshUI(): void { }
 
     static get observedAttributes(): string[] {
         return ['title']
