@@ -19,54 +19,95 @@ function DisorderArray(array) {
     }
     array.push(...t2);
 }
-(function () {
-    const divSections = document.getElementById('sections');
-    divSections.innerText = '';
-    function addSection(title, links, disOrder = false) {
-        const section = document.createElement('section');
-        const label = document.createElement('label');
-        section.appendChild(label);
-        label.innerText = title;
-        if (disOrder) {
-            DisorderArray(links);
+class BuyiLinksElement extends HTMLElement {
+    constructor() {
+        super();
+        this.attachShadow({ mode: "open" });
+        const root = this.shadowRoot;
+        if (root == null) {
+            throw '无法获取 shadowRoot';
         }
-        for (const link of links) {
-            const ak = document.createElement('a');
-            ak.href = link.URL;
-            ak.target = '_blank';
+        this.root = root;
+        this.titleElement = document.createElement('label');
+        this.root.appendChild(this.titleElement);
+        this.linksElement = document.createElement('div');
+        this.root.appendChild(this.linksElement);
+        const style = document.createElement('style');
+        style.innerText = `
+        label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: bold;
+            font-size: large;
+        }
+        
+        a {
+            color: rgb(44, 140, 172);
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        img {
+            width: 20px;
+            margin-right: 5px;
+        }`;
+        this.root.appendChild(style);
+    }
+    root;
+    titleElement;
+    linksElement;
+    links = [];
+    AddLink(text, icon, url) {
+        const link = { Text: text, URL: url, Icon: icon };
+        this.links.push(link);
+    }
+    RandomOrder = true;
+    RefreshUI() {
+        this.linksElement.innerText = '';
+        if (this.RandomOrder) {
+            DisorderArray(this.links);
+        }
+        for (const link of this.links) {
+            const ac = document.createElement('a');
+            ac.href = link.URL;
+            ac.target = '_blank';
             const span = document.createElement('span');
             span.innerText = link.Text;
             const img = document.createElement('img');
             img.src = `/icons/${link.Icon}.webp`;
             img.alt = link.Icon;
-            ak.appendChild(img);
-            ak.appendChild(span);
-            section.appendChild(ak);
-            section.appendChild(document.createElement('br'));
+            ac.appendChild(img);
+            ac.appendChild(span);
+            this.linksElement.appendChild(ac);
+            this.linksElement.appendChild(document.createElement('br'));
         }
-        divSections.appendChild(section);
     }
-    addSection('关注我', [
-        { Text: "Twitter", Icon: "twitter", URL: "https://twitter.com/chenbuyi2019" },
-        { Text: "GitHub", Icon: "github", URL: "https://github.com/chenbuyi2019" },
-        { Text: "Steam", Icon: "steam", URL: "https://steamcommunity.com/profiles/76561198099466387" }
-    ], true);
-    addSection('我的好朋友', [
-        { Text: "技术宅的结界", Icon: "0xaa55", URL: "https://www.0xaa55.com/" },
-        { Text: "Sonic853", Icon: "853", URL: "https://blog.853lab.com/" },
-        { Text: "AceSheep", Icon: "acesheep", URL: "https://blog.acesheep.com/" }
-    ], true);
-    addSection('我的作品', [
-        { Text: "这个网站", Icon: "typescript", URL: "https://github.com/chenbuyi2019/website" },
-        { Text: "Firefox 扩展：垃圾箱", Icon: "firefox", URL: "https://github.com/chenbuyi2019/buyitools" },
-        { Text: "Garry's Mod Addon: Bondage Tool", Icon: "garrysmod", URL: "https://gist.github.com/chenbuyi2019/e97a14b3eec275f56b261b1b5e348670" }
-    ]);
-    addSection('我的配置', [
-        { Text: "AMD Ryzen™ 5 5600X", Icon: "amd", URL: "https://www.amd.com/en/products/cpu/amd-ryzen-5-5600x" },
-        { Text: "Asus TUF GAMING B550M-PLUS WIFI II", Icon: "asus", URL: "https://www.asus.com.cn/motherboards-components/motherboards/tuf-gaming/tuf-gaming-b550m-plus-wifi-ii/" },
-        { Text: "AMD Radeon™ RX 6600", Icon: "amd", URL: "https://www.amd.com/en/products/graphics/amd-radeon-rx-6600" }
-    ]);
-})();
+    static get observedAttributes() {
+        return ['title'];
+    }
+    attributeChangedCallback(name, oldValue, newValue) {
+        switch (name) {
+            case "title":
+                if (newValue == null) {
+                    newValue = '';
+                }
+                this.titleElement.innerText = newValue;
+                break;
+            default:
+                break;
+        }
+    }
+}
+customElements.define('buyi-links', BuyiLinksElement);
+function NewBuyiLinksElement(title, randomOrder) {
+    const e = document.createElement('buyi-links');
+    e.title = title;
+    e.RandomOrder = randomOrder;
+    return e;
+}
 (function () {
     const maxPhotoIndex = 12;
     const minPhotoIndex = 0;
@@ -95,4 +136,37 @@ function DisorderArray(array) {
     }
     changePhoto();
     imgPhoto.addEventListener('click', changePhoto);
+})();
+(function () {
+    const divSections = document.getElementById('sections');
+    divSections.innerText = '';
+    const linksElements = [];
+    let links = NewBuyiLinksElement("关注我", true);
+    links.AddLink("Twitter", "twitter", "https://twitter.com/chenbuyi2019");
+    links.AddLink("GitHub", "github", "https://github.com/chenbuyi2019");
+    links.AddLink("Steam", "steam", "https://steamcommunity.com/profiles/76561198099466387");
+    divSections.appendChild(links);
+    links.RefreshUI();
+    linksElements.push(links);
+    links = NewBuyiLinksElement('我的好朋友', true);
+    links.AddLink("技术宅的结界", "0xaa55", "https://www.0xaa55.com/");
+    links.AddLink("Sonic853", "853", "https://blog.853lab.com/");
+    links.AddLink("AceSheep", "acesheep", "https://blog.acesheep.com/");
+    divSections.appendChild(links);
+    links.RefreshUI();
+    linksElements.push(links);
+    links = NewBuyiLinksElement('我的作品', true);
+    links.AddLink("这个网站", "typescript", "https://github.com/chenbuyi2019/website");
+    links.AddLink("Firefox 扩展：垃圾箱", "firefox", "https://github.com/chenbuyi2019/buyitools");
+    links.AddLink("Garry's Mod Addon: Bondage Tool", "garrysmod", "https://gist.github.com/chenbuyi2019/e97a14b3eec275f56b261b1b5e348670");
+    divSections.appendChild(links);
+    links.RefreshUI();
+    linksElements.push(links);
+    links = NewBuyiLinksElement('我的配置', true);
+    links.AddLink("AMD Ryzen™ 5 5600X", "amd", "https://www.amd.com/en/products/cpu/amd-ryzen-5-5600x");
+    links.AddLink("Asus TUF GAMING B550M-PLUS WIFI II", "asus", "https://www.asus.com.cn/motherboards-components/motherboards/tuf-gaming/tuf-gaming-b550m-plus-wifi-ii/");
+    links.AddLink("AMD Radeon™ RX 6600", "amd", "https://www.amd.com/en/products/graphics/amd-radeon-rx-6600");
+    divSections.appendChild(links);
+    links.RefreshUI();
+    linksElements.push(links);
 })();
