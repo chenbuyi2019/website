@@ -44,6 +44,7 @@
     sayings.AddSaying("别买EA的游戏，乱封号乱红信，而且退款永远退不到手。", myself)
     sayings.AddSaying("拒不承认自己的作品的价值。包括我已经创作出来的和还没创作出来的。它们都是垃圾。", myself)
     sayings.AddSaying("我为什么能够现在自由自在地生活，是因为我完全抛弃了血缘和学校。", myself)
+    sayings.AddSaying("布衣今天在公司也遇到了很不开心的事情，每个月也肯定都会有几次不开心的事情。但是没有父母来滋扰，没有学校来折磨，我都能平稳过渡过来。", myself)
     sayings.RefreshUI()
     divSections.appendChild(sayings)
     myBoxes.push(sayings)
