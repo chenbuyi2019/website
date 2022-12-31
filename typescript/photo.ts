@@ -1,7 +1,7 @@
 /// <reference path="utils.ts" />
 
 (function () {
-    const maxPhotoIndex = 12
+    const maxPhotoIndex = 15
     const minPhotoIndex = 0
     const photoIndexArray: number[] = []
     for (let index = minPhotoIndex; index <= maxPhotoIndex; index++) {
